@@ -49,3 +49,12 @@ public class HelloWorld {
         System.out.println("Hello, World!");
     }
 }
+```
+### Error & Debugging
+| **Error Type**    | **Description**                                                             | **Example**                              |
+| ----------------- | --------------------------------------------------------------------------- | ---------------------------------------- |
+| **Syntax Error**  | Grammatical mistake in the program. The program will not compile.           | `int x = 10` *(missing semicolon)*       |
+| **Runtime Error** | Program compiles successfully, but when it runs, it shows an error message. | `int a = 10 / 0;` *(division by zero)*   |
+| **Logic Error**   | Program compiles and runs without any error, but the output is incorrect.   | `int sum = a - b;` *(should be `a + b`)* |
+
+
