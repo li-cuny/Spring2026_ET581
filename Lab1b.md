@@ -105,6 +105,8 @@ char firstChar = 'B';
 * Default values are automatically assigned to class-level variables if you do not explicitly initialize them.
 
 * Local variables inside methods do NOT get default values — you must assign them a value before using them.
+* default values
+
 | **Type**                           | **Default Value**           |
 | ---------------------------------- | --------------------------- |
 | `byte`, `short`, `int`, `long`     | `0`                         |
