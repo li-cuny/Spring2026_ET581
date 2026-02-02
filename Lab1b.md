@@ -224,3 +224,4 @@ input.close();
 | `%f`      | Floating-point                       | `System.out.printf("Price: %f\n", 12.3456);` → `Price: 12.345600` |
 | `%.3f`    | Floating-point rounded to 3 decimals | `System.out.printf("Price: %.3f\n", 12.3456);` → `Price: 12.346`  |
 | `%s`      | String                               | `System.out.printf("Name: %s\n", "Alice");` → `Name: Alice`       |
+
