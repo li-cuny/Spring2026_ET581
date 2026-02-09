@@ -51,3 +51,58 @@ Short-circuit evaluation means that in a logical expression, Java may **skip eva
 |----------|------------------------|---------|
 | `&&` | Left operand is false | `false && (anything)` → right not evaluated |
 | `\|\|` | Left operand is true  | `true \|\| (anything)` → right not evaluated |
+
+
+## Conditional Statements
+
+### if
+**if (condition) statement;** // or **blocks** `{...}` which is group of statements;
+```java
+int number = 2;
+boolean isNumberEven;
+if (number % 2 == 0) {
+    isNumberEven = true; // Even number
+} else {
+    isNumberEven = false; // Odd number
+}
+```
+### ternary operator 
+
+**variable = (condition) ? valueIfconditionTrue : valueIfconditionFalse;**
+```java
+int number = 2;
+boolean isNumberEven = (number % 2 == 0) ? true: false;
+```
+
+
+
+### switch
+```java
+int day = 2;
+
+switch(day) {
+    case 1:
+        System.out.println("Monday");
+        break;
+    case 2:
+        System.out.println("Tuesday");
+        break;
+    default:
+        System.out.println("Other day");
+}
+// Output: Tuesday
+```
+ ## StringTokenizer
+- `"Hello world Java"` — how can we separate each word?
+- `StringTokenizer` breaks a string into smaller parts (tokens) using **delimiters** (default: space " ")
+```java
+import java.util.StringTokenizer;
+
+String sentence = "Hello world Java";
+StringTokenizer st1 = new StringTokenizer(sentence);// default delimiter " " space
+System.out.println(st1.nextToken()); // Hello
+
+String data = "apple,banana,orange";
+StringTokenizer st2 = new StringTokenizer(data, ","); // using "," as separator
+System.out.println(st2.nextToken()); // apple
+```
