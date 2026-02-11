@@ -1,4 +1,4 @@
-# While Loop Exercises in Java
+# While Loop Exercises 
 
 ## 1. Print Numbers 1 to 10
 
