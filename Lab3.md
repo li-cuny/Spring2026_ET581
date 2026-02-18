@@ -92,6 +92,23 @@ for (int i = 0; i < 5; i++) {
    - `for` → repeat a fixed number of times  
    - `while` → repeat until a condition becomes false (not necessarily a fixed count)
 
+
+### multiple statement 
+In a for loop, when you have more than one statement in the initialization or update sections, you separate them with commas.
+
+✅ Important points:
+The condition cannot have commas, it must be a single boolean expression.
+```java
+for (int x = 1, y = 5; x <= 3 && y >= 3; x++, y--) {
+    System.out.println("x = " + x + ", y = " + y);
+}
+```
+output:
+```
+x = 1, y = 5
+x = 2, y = 4
+x = 3, y = 3
+```
 ---
 
 ## 4. Break
