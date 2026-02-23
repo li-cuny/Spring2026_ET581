@@ -1,5 +1,7 @@
-# 1.Arrays
+# Arrays
 
+
+## 1. Definition
 A data structure that stores a fixed number of elements of the same type, accessible by an index.
 
 **Key Points**
