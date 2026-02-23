@@ -1,6 +1,5 @@
-# Java Arrays
+# 1.Arrays
 
-## 1. What is an Array?
 A data structure that stores a fixed number of elements of the same type, accessible by an index.
 
 **Key Points**
@@ -55,7 +54,7 @@ String[] cars = {"Volvo", "BMW", "Ford"};
 int[] numbers;
 numbers = new int[]{10, 20, 30, 40, 50};
 ```
-## Ways to Create Arrays
+### Ways to Create Arrays
 
 | Way | Syntax | Notes |
 |-----|-------|------|
@@ -115,7 +114,7 @@ for (int num : numbers) {
 
 
 
-## Shallow Copy vs Deep Copy
+## 6. Shallow Copy vs Deep Copy
 
 ### Shallow Copy
 - Copies **reference only**.
@@ -147,7 +146,7 @@ System.out.println(b[0]); // 99
 
 ---
 
-## 4. Arrays Utility Class (`java.util.Arrays`)
+## 7. Arrays Utility Class (`java.util.Arrays`)
 
 | Method | Description | Example |
 |--------|-------------|---------|
