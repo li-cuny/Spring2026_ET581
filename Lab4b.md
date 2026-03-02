@@ -1,4 +1,4 @@
-# Java Arrays and Related Concepts
+# Java Arrays
 
 ## 1. Multi-Dimensional Arrays
 

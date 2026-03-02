@@ -1,6 +1,5 @@
 # Nested Loops & 2D Arrays – Practice Questions
 
----
 
 ## Part 1: Basic Nested Loops
 
