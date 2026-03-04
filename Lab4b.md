@@ -177,7 +177,7 @@ for (int j = 0; j < arr.length - 1; j++) {
     }
 }
 ```
-[[one number sort steps ](https://li-cuny.github.io/ET-581_Lectrure/html/bubble_demo_1.html)]
+[[one number sort steps ](https://li-cuny.github.io/Spring2026_ET581/files/bubble_demo_1.html)]
 
 ⚠️ Note: the condition is `j < arr.length - 1`, not `i < arr.length - 1`,  
 because `b = arr[j+1]` could go out of bounds.  
