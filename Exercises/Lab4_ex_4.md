@@ -99,13 +99,13 @@ false
 Generate a random number **between 20 and 30**.
 
 Example output:
-
+```
 Random number: 24
-
+```
 
 ---
 
-## Exercise 10 – Two Dice Game 🎲🎲 (Harder)
+## Exercise 10 – Two Dice Game 🎲🎲 
 Generate **two dice rolls** and print the total.
 
 Example output:
