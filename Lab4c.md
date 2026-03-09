@@ -43,13 +43,13 @@ boolean rBool = rand.nextBoolean();
 ```
 - More versatile than `Math.random()`.
 - Can set a **seed** for reproducible results.
-
----
-
-### Method Overloading
-- Same method name, different parameter list.
+    - If the formula starts with the same seed, it will produce the same sequence of numbers.
 ```java
-int square(int x);
-double square(double x);
+import java.util.Random;
+
+Random r = new Random(10);   // 10 is the seed
+System.out.println(r.nextInt(100));
+System.out.println(r.nextInt(100));
 ```
 
+---
