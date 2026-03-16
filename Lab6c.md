@@ -1,4 +1,25 @@
 # Memory
+```java
+class Student {
+    String name;
+    int age;
+
+    // Method stored in Method Area
+    void display() {
+        System.out.println("Name: " + name + ", Age: " + age);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Student s1 = new Student();   // Object created in Heap
+        s1.name = "Alice";            // Instance field in Heap
+        s1.age = 20;                  // Instance field in Heap
+
+        s1.display();                 // display() method called
+    }
+}
+```
 ## 1. Method Area
 
 * Stores **class bytecode** and **method code** (e.g., `display()`).  
