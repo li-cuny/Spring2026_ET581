@@ -56,14 +56,3 @@ Key Idea:
 
 
 
-9. Object-Oriented Concepts (next level)
-
-Once your students are comfortable with these, you can move to:
-
-Inheritance – extends keyword, parent-child classes
-
-Polymorphism – method overloading and overriding
-
-Abstraction – abstract classes and interfaces
-
-Packages – organizing classes
