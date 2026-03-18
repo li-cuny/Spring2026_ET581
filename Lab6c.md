@@ -77,3 +77,40 @@ Key Idea:
 
 
 
+# instance block & static block
+
+## 1. Static Block
+
+- Runs **only once** — when the class is loaded.
+- Executed **before `main()`** or **before any object of the class is created**.
+- **Cannot access instance variables** or use `this` — there is no object context.
+- Can access **static variables** and call **static methods**.
+- A class can have **multiple static blocks**, executed in the **order they appear**.
+
+**Example:**
+```java
+class Car {
+    static {
+        System.out.println("Static block is invoked");
+    }
+    // only once when class loaed - class level
+}
+```
+
+---
+
+## 2. Instance Block
+
+- An **instance block** (also called an **initializer block**) is a block of code inside a class **without the `static` keyword**.
+- Runs **every time an object is created**, **before the constructor**.
+- Can access **instance variables** directly.
+
+**Example:**
+```java
+class Car {
+    {
+        System.out.println("Instance block is invoked");
+    } // every time object created - obj level
+}
+```
+
