@@ -64,24 +64,29 @@ public class Main {
 ```
 #### Static Inner Class
 - Can be accessed **without creating** an outer class object.
-
 ```java
 class Outer {
-    int x = 10;
+    int x = 10;         // instance variable
+    static int y = 20;  // static variable
 
     static class StaticInner {
-        void show() {
-            System.out.println("Outer x = " + x);
+        void show(Outer outer) { // pass Outer instance to access x
+            System.out.println("Outer x = " + outer.x); // instance variable
+            System.out.println("Outer y = " + y);       // static variable
         }
     }
 }
+
+public class Main {
+    public static void main(String[] args) {
+        Outer outer = new Outer(); // instance of Outer
+        Outer.StaticInner inner = new Outer.StaticInner(); // create static inner
+
+        inner.show(outer); // print both x and y
+    }
+}
 ```
-```java
-Outer o = new Outer();
-Outer.Inner i = o.new Inner();
-i.show();  // Outer x = 10
-```
-```
+
 
 ✅ **Advantage:** Inner classes can access outer class **attributes and methods**, even if they are `private`.
 
