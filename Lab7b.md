@@ -92,7 +92,7 @@ public class Main {
 
 * **Note**:A top-level class (not nested inside another class) cannot be static.
     ```java
-    static class Parent {  
+    static class Outer {  
         // ❌ Compile-time error
     }
     ```
