@@ -66,7 +66,21 @@ public class Main {
 - Can be accessed **without creating** an outer class object.
 
 ```java
-Outer.StaticInner inner = new Outer.StaticInner();
+class Outer {
+    int x = 10;
+
+    static class StaticInner {
+        void show() {
+            System.out.println("Outer x = " + x);
+        }
+    }
+}
+```
+```java
+Outer o = new Outer();
+Outer.Inner i = o.new Inner();
+i.show();  // Outer x = 10
+```
 ```
 
 ✅ **Advantage:** Inner classes can access outer class **attributes and methods**, even if they are `private`.
