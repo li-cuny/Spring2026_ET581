@@ -235,6 +235,7 @@ Example:
 final class A {}
 class B extends A {}   // ❌ Error
 ```
+- `final variable` init
 
 | Type                    | When initialized                                   |
 | ----------------------- | -------------------------------------------------- |
