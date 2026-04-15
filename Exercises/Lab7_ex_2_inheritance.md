@@ -1,4 +1,4 @@
-# Java Inheritance Practice Exercises
+# Lab7 Inheritance Practice Exercises
 
 ---
 
