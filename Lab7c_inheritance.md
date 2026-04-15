@@ -236,5 +236,11 @@ final class A {}
 class B extends A {}   // ❌ Error
 ```
 
+| Type                    | When initialized                                   |
+| ----------------------- | -------------------------------------------------- |
+| final instance/non-static variable | during object creation (constructor or init block) |
+| final static variable   | during class loading                               |
+| final local variable    | before first use in method                         |
+
 ---
 
