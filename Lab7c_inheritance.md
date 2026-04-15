@@ -241,7 +241,7 @@ You can `assign it only once`, and then it cannot change.
 
 | Type                    | When initialized                                   |
 | ----------------------- | -------------------------------------------------- |
-| final instance/non-static variable | declarationduring object creation (declaration or constructor or init block) |
+| final instance/non-static variable | during object creation (declaration or constructor or init block) |
 | final static variable   | during class loading                               |
 | final local variable    | before first use in method                         |
 
