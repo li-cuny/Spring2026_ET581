@@ -117,7 +117,7 @@ System.out.println(null instanceof Parent); // false
 
 ---
 
-### 🔼 Upcasting
+#####  Upcasting
 - Upcasting is casting a **subclass object to a superclass reference**
 - It is **always safe**
 - Done **implicitly (no explicit cast required)**
