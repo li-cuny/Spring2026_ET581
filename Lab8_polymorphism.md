@@ -22,33 +22,37 @@
 - **Data members cannot be overridden** → applies only to methods
 ---
 
-## 2. Runtime Polymorphism (Dynamic Method Dispatch)
+## 2. Runtime Polymorphism
 
-When a **superclass reference variable** refers to a **subclass object**, it is called **upcasting**.  
-The overridden method that gets called is determined by the **actual object type** at runtime.
+### 2.1 Dynamic Method Dispatch
 
-### **Example**
+- Occurs when a **superclass reference variable** refers to a **subclass object** (upcasting).
+- The method that gets executed is determined by the **actual object type at runtime**, not the reference type.
+- This works only for **overridden methods**.
+
+### Example
 ```java
 class Parent {
     void show() { System.out.println("Parent"); }
 }
 
 class Child extends Parent {
+    @Override
     void show() { System.out.println("Child"); }
 }
 
 public class Main {
     public static void main(String[] args) {
         Parent p = new Child(); // upcasting
-        p.show(); // Output: Child → dynamic method dispatch
+        p.show(); // Output: Child
     }
 }
 ```
 
 ---
-## 3. Binding 
+### 2.2 Binding 
 
-### 1. Field binding
+#### 1. Field binding
 
 * **Field access is compile-time bound**
 
@@ -62,16 +66,18 @@ class Child extends Parent { int x = 20; }
 Parent p = new Child();
 System.out.println(p.x); // Output: 10 → field access based on reference type
 ```
-### 2. Method binding
-* Method calls can be runtime bound if the method is `overridden`
-* determined by the `actual object type`.
-* runtime polymorphism
+#### 2. Method Binding
+- Method calls are **dynamically bound (runtime binding)** when the method is overridden
+- Determined by the **actual object type**
+- This is the basis of **runtime polymorphism**
+
 ```java
 class Parent {
     void show() { System.out.println("Parent"); }
 }
 
 class Child extends Parent {
+    @Override
     void show() { System.out.println("Child"); }
 }
 
@@ -90,35 +96,42 @@ public class Main {
 
 ---
 
----
 
 ## 4. `instanceof` Operator
 
-- Tests whether an object is an **instance** of a class, subclass, or interface  
-- Returns **true** or **false**
-- If object is null, it always returns false.
+- Used to check whether an object is an **instance of a class, subclass, or interface**
+- Returns a **boolean value (true or false)**
+- If the object is `null`, it always returns **false**
 
-### **Example**
+### Example
 ```java
 Parent p = new Child();
-System.out.println(p instanceof Child);  // true
-System.out.println(p instanceof Parent); // true
+
+System.out.println(p instanceof Child);   // true
+System.out.println(p instanceof Parent);  // true
 System.out.println(null instanceof Parent); // false
 ```
 
+
 #### 5. Upcasting vs Downcasting
 
-##### Upcasting
-* Upcasting is casting a subclass object to a superclass reference.
+---
 
-* Always safe; no explicit cast is needed.
+### 🔼 Upcasting
+- Upcasting is casting a **subclass object to a superclass reference**
+- It is **always safe**
+- Done **implicitly (no explicit cast required)**
+- Used for **runtime polymorphism**
+
 ```java
 class Parent {
     void show() { System.out.println("Parent show"); }
 }
 
 class Child extends Parent {
+    @Override
     void show() { System.out.println("Child show"); }
+
     void play() { System.out.println("Child play"); }
 }
 
@@ -126,29 +139,33 @@ public class Main {
     public static void main(String[] args) {
         Parent p = new Child(); // Upcasting (automatic)
         p.show(); // Child show → runtime polymorphism
-        // p.play(); // ❌ Compile-time error: Parent reference can't see Child-only methods
+
+        // p.play(); ❌ Not accessible (reference type rule)
     }
 }
 ```
 ##### Downcasting
-* Downcasting is casting a superclass reference to a subclass reference.
+- Downcasting is casting a **superclass reference to a subclass reference**
+- Requires **explicit casting**
+- Only safe if the actual object is truly of the target type
+- Otherwise, it throws a **ClassCastException at runtime**
 
-* Explicit cast is required.
-
-* Only safe if the actual object is really a Child; otherwise, runtime exception occurs (ClassCastException).
+### Example
 
 ```java
-
-// unsafe casting
+// ❌ Unsafe downcasting (runtime error)
 Parent p2 = new Parent();
-Child c2 = (Child) p2; // ❌ ClassCastException at runtime
-// safe casting
+Child c2 = (Child) p2; // ClassCastException
+
+// ✅ Safe downcasting
 Parent p = new Child();
+
 if (p instanceof Child) {
     Child c = (Child) p;
     c.play();
-}
+}}
 ```
+### 🧠 Memory Representation (Upcasting / Downcasting)
 ```java
 Heap:
 [ Child object ]
@@ -160,10 +177,15 @@ Reference variable:
 p ---> points to Child object
 c ---> points to same Child object
 ```
+## 🔥 Key Idea
+
+- Both `p` and `c` point to the **same object in heap**
+- Only the **reference type changes**, not the object
+- Object always remains **Child**
 ---
 
 
-### 6. Access Modifiers ( protected and default)
+### 6. Access Modifiers (  default and protected)
 
 ---
 
@@ -237,7 +259,9 @@ public class Child extends Parent {
         System.out.println(data); // ✅ Accessible (protected)
     }
 }
-
+```
+#### File: `package2/Child.java`
+```java
 public class Main {
     public static void main(String[] args) {
         Child c = new Child();
@@ -245,21 +269,3 @@ public class Main {
     }
 }
 ```
-
-
-#### ✅ Key Points
-
-- Runtime polymorphism works **only for methods**, not fields.  
-- `static`, `private`, and `final` methods → **compile-time (static) binding**.  
-- `instanceof` returns **false** for `null`.  
-- **Upcasting:** `Parent p = new Child();`  
-- Accessing inner classes:  
-  - **Non-static:** needs outer object  
-  - **Static:** no outer object needed  
-- Overridden method execution is determined by the **actual object type**, not reference type.  
-- Compile-time polymorphism → **method overloading**  
-- Runtime polymorphism → **method overriding**
-- `protected` → accessible in **same package + subclasses in other packages**  
-- `default` → accessible **only in same package**  
-- `private` → accessible **only within the same class**  
-- `public` → accessible **everywhere**
