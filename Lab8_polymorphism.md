@@ -150,7 +150,7 @@ public class Main {
 - Only safe if the actual object is truly of the target type
 - Otherwise, it throws a **ClassCastException at runtime**
 
-### Example
+##### Example
 
 ```java
 // ❌ Unsafe downcasting (runtime error)
@@ -165,7 +165,7 @@ if (p instanceof Child) {
     c.play();
 }}
 ```
-### 🧠 Memory Representation (Upcasting / Downcasting)
+##### 🧠 Memory Representation (Upcasting / Downcasting)
 ```java
 Heap:
 [ Child object ]
@@ -177,7 +177,7 @@ Reference variable:
 p ---> points to Child object
 c ---> points to same Child object
 ```
-## 🔥 Key Idea
+##### 🔥 Key Idea
 
 - Both `p` and `c` point to the **same object in heap**
 - Only the **reference type changes**, not the object
