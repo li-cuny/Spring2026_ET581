@@ -247,7 +247,7 @@ You can `assign it only once`, and then it cannot change.
 
 ---
 
-### Object class
+## 11. Object class
 **Every class automatically extends Object**.
 
 ### 🔹 toString()
@@ -256,7 +256,6 @@ You can `assign it only once`, and then it cannot change.
 
 ### 🔹 equals(Object obj)
 - Compares memory addresses 
----
 
 ### 🔹 hashCode()
 - Returns an integer based on object identity (memory-based)
