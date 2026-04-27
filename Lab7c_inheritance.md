@@ -247,3 +247,20 @@ You can `assign it only once`, and then it cannot change.
 
 ---
 
+### Object class
+**Every class automatically extends Object**.
+
+### 🔹 toString()
+- Returns: `ClassName@hexHashCode`
+- Example: `Car@15db9742`
+
+### 🔹 equals(Object obj)
+- Compares memory addresses 
+---
+
+### 🔹 hashCode()
+- Returns an integer based on object identity (memory-based)
+- Same object → same hash code
+
+https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
+

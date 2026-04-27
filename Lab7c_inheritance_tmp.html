@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lab7c_inheritance.md</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" href="file:///Users/changlinli/Documents/spring2026/Spring2026_ET581/R%3A%5C2.Travail%5C1.Enseignement%5CCours%5C_1.Outils%5C2.Developpement%5C1.SCSS%5Cmain.css" type="text/css"><link rel="stylesheet" href="file:///Users/changlinli/Documents/spring2026/Spring2026_ET581/D%3A%5Crdaros%5CCours%5C_1.Outils%5C2.Developpement%5C1.SCSS%5Cmain.css" type="text/css">
+</head>
+
+<body>
+    <h2 id="1-inheritance-in-java">1. Inheritance in Java</h2>
+<h3 id="%E2%9E%A4-concept">➤ Concept</h3>
+<ul>
+<li><strong>Inheritance</strong> allows one class to <strong>reuse</strong> the code of another.</li>
+<li>The class being inherited from is the <strong>superclass</strong>.</li>
+<li>The class that inherits is the <strong>subclass</strong>.</li>
+</ul>
+<p><strong>Syntax:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{
+    <span class="hljs-comment">// Parent field and method</span>
+}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{
+     <span class="hljs-comment">// Child field and method</span>
+}
+</div></code></pre>
+<p>📊 <strong>IS-A Relationship:</strong><br>
+<code>Child IS-A Parent</code></p>
+<hr>
+<h3 id="%E2%9E%A4-inherited-members">➤ Inherited Members</h3>
+<p>When a subclass is created using <code>extends</code>, it automatically gets most of the members (fields and methods) of its superclass, except some special cases.</p>
+<table>
+<thead>
+<tr>
+<th>Member Type</th>
+<th>Inherited?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fields (instance variables)</strong></td>
+<td>✅ Yes</td>
+<td>But access depends on the <strong>access modifier</strong> (e.g., <code>private</code> not directly accessible).</td>
+</tr>
+<tr>
+<td><strong>Instance methods</strong></td>
+<td>✅ Yes</td>
+<td>Can be used or <strong>overridden</strong> in the subclass.</td>
+</tr>
+<tr>
+<td><strong>Private members</strong></td>
+<td>✅ Yes,  but ⚠️ Not directly accessible</td>
+<td>They exist in the object but are <strong>hidden</strong>; accessible only through <strong>public methods</strong> of the superclass.</td>
+</tr>
+<tr>
+<td><strong>Constructors</strong></td>
+<td>❌ No</td>
+<td>Constructors are <strong>never inherited</strong>. A subclass must call one using <code>super()</code>.</td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{
+    <span class="hljs-keyword">public</span> String a = <span class="hljs-string">"a"</span>;
+    <span class="hljs-keyword">private</span> String b = <span class="hljs-string">"b"</span>;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getB</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.b;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doubleB</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">this</span>.b = <span class="hljs-keyword">this</span>.b + <span class="hljs-keyword">this</span>.b;
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{
+    <span class="hljs-keyword">private</span> String c = <span class="hljs-string">"c"</span>;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">this</span>.a; <span class="hljs-comment">// visible</span>
+        <span class="hljs-keyword">this</span>.b; <span class="hljs-comment">// not visible</span>
+        <span class="hljs-keyword">this</span>.getB(); <span class="hljs-comment">// visible</span>
+        <span class="hljs-keyword">this</span>.doubleB(); <span class="hljs-comment">// not visible</span>
+    }
+}
+</div></code></pre>
+<h4 id="%E2%9E%A4-constructor-calls-and-inheritance">➤ Constructor Calls and Inheritance</h4>
+<p>When you create a subclass object, the constructor of the parent class is always called first.</p>
+<p>If you do not explicitly call a parent constructor using <code>super()</code>,<br>
+the compiler automatically inserts a call to the no-argument parent constructor (super();) as the first line of the subclass constructor.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{
+    Parent() {
+        System.out.println(<span class="hljs-string">"Parent constructor"</span>);
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{
+    <span class="hljs-comment">// No constructor explicitly written</span>
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        Child c = <span class="hljs-keyword">new</span> Child();
+    }
+}
+</div></code></pre>
+<p>even though Child has no constructor, Java automatically add</p>
+<pre class="hljs"><code><div>Child() {
+    <span class="hljs-keyword">super</span>(); <span class="hljs-comment">// automatically inserted</span>
+}
+</div></code></pre>
+<p>If the parent class does NOT have a no-argument constructor, and the subclass does not explicitly call super(args), you will get a compile-time error.</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{
+    Parent(<span class="hljs-keyword">int</span> x) { }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{
+    <span class="hljs-comment">// ❌ Compiler error: Parent() does not exist</span>
+}
+</div></code></pre>
+<hr>
+<h2 id="2-multiple-inheritance">2. Multiple Inheritance</h2>
+<ul>
+<li>Java <strong>does not support</strong> multiple inheritance using classes to avoid ambiguity.</li>
+</ul>
+<p>Example problem:</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>{ <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span> </span>{} }
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> </span>{ <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span> </span>{} }
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">A</span>, <span class="hljs-title">B</span> </span>{ }  <span class="hljs-comment">// ❌ Error</span>
+</div></code></pre>
+<p>Use <strong>interfaces</strong> for multiple inheritance (will be covered later).</p>
+<hr>
+<h2 id="%F0%9F%A4%9D-3-aggregation-has-a-relationship">🤝 3. Aggregation (HAS-A Relationship)</h2>
+<ul>
+<li>When one class has a reference to another class.</li>
+</ul>
+<p>Example:</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Address</span> </span>{
+    String city;
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> </span>{
+    Address addr; <span class="hljs-comment">// HAS-A relationship</span>
+}
+</div></code></pre>
+<p>Use <strong>inheritance</strong> for <strong>IS-A</strong>, and <strong>aggregation</strong> for <strong>HAS-A</strong>.</p>
+<hr>
+<h2 id="%F0%9F%94%84-4-method-overriding">🔄 4. Method Overriding</h2>
+<ul>
+<li>Same method name and parameters, but <strong>different implementation</strong> in subclass.</li>
+</ul>
+<p>Example:</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">sound</span><span class="hljs-params">()</span> </span>{ System.out.println(<span class="hljs-string">"Animal sound"</span>); }
+}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dog</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Animal</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">sound</span><span class="hljs-params">()</span> </span>{ System.out.println(<span class="hljs-string">"Bark"</span>); }
+}
+</div></code></pre>
+<h4 id="%E2%9E%A4-overloading-vs-overriding">➤ Overloading VS. Overriding</h4>
+<p><strong>Overloading</strong> → “Same name, different forms” → happens in <strong>same class</strong> → compile-time resolution</p>
+<p><strong>Overriding</strong> → “<strong>Subclass</strong>  <code>replaces</code> parent behavior” → happens across classes → runtime resolution</p>
+<p>🧩 <strong>Static methods cannot be overridden.</strong></p>
+<hr>
+<h2 id="%F0%9F%A7%AC-5-covariant-return-type">🧬 5. Covariant Return Type</h2>
+<ul>
+<li>Since Java 5, subclass methods can override a parent method and return a <strong>subtype</strong>.</li>
+</ul>
+<p>Example:</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span> </span>{}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dog</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Animal</span> </span>{}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AnimalShelter</span> </span>{
+    <span class="hljs-function">Animal <span class="hljs-title">getAnimal</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Animal(); }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DogShelter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AnimalShelter</span> </span>{
+    <span class="hljs-function">Dog <span class="hljs-title">getAnimal</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Dog(); }  <span class="hljs-comment">// ✅ Covariant return type</span>
+}
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%A7%B0-6-super-keyword">🧰 6. <code>super</code> Keyword</h2>
+<p>Used to refer to the <strong>parent class</strong>.</p>
+<p>Examples:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">super</span>.varName;         <span class="hljs-comment">// Access parent variable</span>
+<span class="hljs-keyword">super</span>.methodName();    <span class="hljs-comment">// Call parent method</span>
+<span class="hljs-keyword">super</span>();               <span class="hljs-comment">// Call parent constructor</span>
+</div></code></pre>
+<blockquote>
+<p>The parent constructor runs <strong>before</strong> the child’s constructor.</p>
+</blockquote>
+<hr>
+<h2 id="%E2%9A%99%EF%B8%8F-7-instance-initializer-block">⚙️ 7. Instance Initializer Block</h2>
+<ul>
+<li>Runs each time an object is created, <strong>after the parent constructor</strong>.</li>
+</ul>
+<p>Example:</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{
+    
+    <span class="hljs-comment">// Instance initializer block</span>
+    {
+        System.out.println(<span class="hljs-string">"Parent Instance Block"</span>);
+    }
+
+    Parent() {
+        System.out.println(<span class="hljs-string">"Parent Constructor"</span>);
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{
+
+    <span class="hljs-comment">// Instance initializer block</span>
+    {
+        System.out.println(<span class="hljs-string">"Child Instance Block"</span>);
+    }
+
+    Child() {
+        System.out.println(<span class="hljs-string">"Child Constructor"</span>);
+    }
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        Child c = <span class="hljs-keyword">new</span> Child();
+    }
+}
+</div></code></pre>
+<p>output:</p>
+<pre class="hljs"><code><div>Parent Instance Block
+Parent Constructor
+Child Instance Block
+Child Constructor
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%94%92-10-the-final-keyword">🔒 10. The <code>final</code> Keyword</h2>
+<p>Used to <strong>restrict modification</strong>:</p>
+<ul>
+<li><code>final class</code> → cannot be extended.</li>
+<li><code>final method</code> → cannot be overridden.</li>
+<li><code>final variable</code> → value cannot change.</li>
+</ul>
+<p>Example:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span> </span>{}
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">A</span> </span>{}   <span class="hljs-comment">// ❌ Error</span>
+</div></code></pre>
+<ul>
+<li>A final variable means:</li>
+</ul>
+<p>You can <code>assign it only once</code>, and then it cannot change.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>When initialized</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>final instance/non-static variable</td>
+<td>during object creation (declaration or constructor or init block)</td>
+</tr>
+<tr>
+<td>final static variable</td>
+<td>during class loading</td>
+</tr>
+<tr>
+<td>final local variable</td>
+<td>before first use in method</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="object-class">Object class</h3>
+<p><strong>Every class automatically extends Object</strong>.</p>
+<h3 id="%F0%9F%94%B9-tostring">🔹 toString()</h3>
+<ul>
+<li>Returns: <code>ClassName@hexHashCode</code></li>
+<li>Example: <code>Car@15db9742</code></li>
+</ul>
+<h3 id="%F0%9F%94%B9-equalsobject-obj">🔹 equals(Object obj)</h3>
+<ul>
+<li>Compares memory addresses</li>
+</ul>
+<hr>
+<h3 id="%F0%9F%94%B9-hashcode">🔹 hashCode()</h3>
+<ul>
+<li>Returns an integer based on object identity (memory-based)</li>
+<li>Same object → same hash code</li>
+</ul>
+<p>https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html</p>
+
+</body>
+
+</html>
